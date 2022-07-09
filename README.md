@@ -10,7 +10,10 @@ t path to a directory containing all relevant files for a RobertaTokenizerFast t
 1) Rename cardiffnlp folder
 2) launch the scrypt again
 3) delete renamed folder
-2. if your system can't find the spacy models - just type in the comand line:
-3. 
+
+2. Your system can't find the spacy models
+
+**Solution**:
+just type in the comand line:
 `python -m spacy download en_core_web_lg`
 `python -m spacy download en_core_web_sm`
