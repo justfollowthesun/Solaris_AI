@@ -5,10 +5,12 @@ Some comments about possible errors:
 1. `OSError: Can't load tokenizer for 'cardiffnlp/twitter-roberta-base-sentiment'. If you were trying to load it from 'https://huggingface.co/models
 ', make sure you don't have a local directory with the same name. Otherwise, make sure 'cardiffnlp/twitter-roberta-base-sentiment' is the correc
 t path to a directory containing all relevant files for a RobertaTokenizerFast tokenizer.`
+
 **Solution**:
 1) Rename cardiffnlp folder
 2) launch the scrypt again
 3) delete renamed folder
 2. if your system can't find the spacy models - just type in the comand line:
+3. 
 `python -m spacy download en_core_web_lg`
 `python -m spacy download en_core_web_sm`
