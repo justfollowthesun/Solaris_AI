@@ -12,7 +12,14 @@ import requests
 import spacy
 
 
-def translate(text, IAM_TOKEN=YANDEX_TOKEN,folder_id='b1gc4o0hrp0t5fgitmv0', target_language='en'):
+def translate(text, IAM_TOKEN=YANDEX_TOKEN,folder_id='b1gc4o0hrp0t5fgitmv0', target_language='en') -> Str:
+    '''
+    Translate input text to english
+    Input:
+    str - text for translated (any different language)
+    Output:
+    translated english text via Yandex.Translate
+    '''
     body = {
     "targetLanguageCode": target_language,
     "texts": text,
@@ -33,16 +40,12 @@ def translate(text, IAM_TOKEN=YANDEX_TOKEN,folder_id='b1gc4o0hrp0t5fgitmv0', tar
 
 def preprocess(text):
     new_text = []
-
-
     for t in text.split(" "):
         t = '@user' if t.startswith('@') and len(t) > 1 else t
         t = 'http' if t.startswith('http') else t
         new_text.append(t)
     return " ".join(new_text)
 
-# task='sentiment'
-# MODEL = f"cardiffnlp/twitter-roberta-base-{task}"
 
 task='sentiment'
 MODEL = f"cardiffnlp/twitter-roberta-base-{task}"
@@ -83,8 +86,18 @@ python -m spacy download en_core_web_lg
 python -m spacy download en_core_web_sm
 '''
 
-def text_tonality(input_txt, nlp=nlp, model=model,tokenizer=tokenizer):
-    categorises = ['negative', 'neutral', 'positive']
+def text_tonality(input_txt, nlp=nlp, model=model,tokenizer=tokenizer)-> Int:
+    '''
+    Input:
+    Str - Input text for tonality detection
+    Output:
+    Categorises: int - Output classifid text category
+    -1 - Negative,
+    0 - Neutral
+    1 - Positive
+    '''
+
+    categorises = [-1, 0, 1]
 
     if detect(input_txt) != 'en':
         input_txt = translate(input_txt)
@@ -99,4 +112,7 @@ def text_tonality(input_txt, nlp=nlp, model=model,tokenizer=tokenizer):
     # max_index = scores.index(scores_max)
     return categorises[max_index]
 
-print(text_tonality("""its fuckin cool"""))
+
+########## TEST ##########
+# print(text_tonality("""это просто замечательно!"""))
+# print(text_tonality("""its fuckin cool"""))
