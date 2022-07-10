@@ -1,0 +1,4 @@
+facebook-scraper
+transformers
+yandex_translate
+langdetect
