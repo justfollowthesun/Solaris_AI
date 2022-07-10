@@ -17,7 +17,7 @@ groups = ["https://vk.com/pvd_sochi", "https://vk.com/idem_pohod",
           "https://vk.com/pohodvgoru", "https://vk.com/altay", "https://vk.com/vtourisme",
           "https://vk.com/activealtay"]
 
-token = "vk1.a.ra0pJ2adtzz5wUfmliiDquw8Ep79mQ3DVFYsv1hDVY-4ItlsY-UsObXbnNS7bF1hpsqy9dVkZsO2vMYQGIRXXyNAnLXBgASyh_07TuD7li6iS9EEKW-GxOSLzdvY24cAQdung1k3Zi6FgKe_hVdb0WSnfVreHPewRfJMm-Rnm2rdHmMEDs9HCR2awXKJGrCq"
+token = "token"
 
 
 def spans_set(spans, text):
