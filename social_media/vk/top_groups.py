@@ -24,7 +24,6 @@ def times(days:int) -> int:
 def groups_companies(companies, days):
     result = dict()
     start_time = times(days)
-    response = None
 
     for company in companies:
         next_from = None
@@ -40,11 +39,10 @@ def groups_companies(companies, days):
                 }
 
             if next_from is not None:
-                par['next_from'] = next_from
+                par['start_from'] = next_from
 
             try:
                 response = requests.get('https://api.vk.com/method/newsfeed.search', params=par).json()['response']
-                next_from = response['next_from']
             except:
                 pass
 
@@ -54,10 +52,19 @@ def groups_companies(companies, days):
                     if post['owner_id'] < 0:
                         result[groups[(-post['owner_id'])]] = 1 if groups[(-post['owner_id'])] not in result.keys() else result[groups[-post['owner_id']]] + 1
 
-            if next_from is None:
+            if 'next_from' in response.keys():
+                next_from = response['next_from']
+            else:
                 break
 
     return result
 
 
-print(groups_companies(companies, 30))
+result = groups_companies(companies, 30)
+
+import pandas
+
+result = pd.DataFrame([(i, result[i]) for i in result.keys()])
+print(result)
+result = result.sort_values(by=1, ascending=False)
+result.to_excel("result.xlsx", encoding="utf-8")

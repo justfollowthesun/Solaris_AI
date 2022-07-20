@@ -1,0 +1,5 @@
+certifi
+pandas
+python-dotenv
+selenium==4.2.0
+urllib3==1.26
